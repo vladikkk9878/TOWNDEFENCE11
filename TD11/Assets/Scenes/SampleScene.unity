@@ -255,7 +255,7 @@ MonoBehaviour:
   gameManager: {fileID: 1653002298}
   coinImage: {fileID: 34427198}
   goldText: {fileID: 1978719925}
-  Time: 2
+  Time: 1
   civiliansText: {fileID: 908038233}
   buyCivillianBtn: {fileID: 1435664303}
   priceCivillian: 5
@@ -267,7 +267,7 @@ MonoBehaviour:
   attackSlider: {fileID: 581312056}
   waveInfoText: {fileID: 373952355}
   timeToAttack: 40
-  waveMultiplier: 10
+  waveMultiplier: 2
 --- !u!4 &66233818
 Transform:
   m_ObjectHideFlags: 0

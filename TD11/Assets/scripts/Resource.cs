@@ -11,7 +11,7 @@ public class Resource : MonoBehaviour
     [Header("Шкала и золото")]
     [SerializeField] private Image coinImage;
     [SerializeField] private TextMeshProUGUI goldText;
-    [SerializeField] private float Time = 2.0f;
+    [SerializeField] private float Time = 1.0f;
 
     [Header("Крестьяне")]
     [SerializeField] private TextMeshProUGUI civiliansText;
