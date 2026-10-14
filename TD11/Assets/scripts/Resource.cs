@@ -8,11 +8,6 @@ public class Resource : MonoBehaviour
     [Header("Ссылки на Менеджеры")]
     [SerializeField] private GameManager gameManager;
 
-    [Header("Шкала и золото")]
-    [SerializeField] private Image coinImage;
-    [SerializeField] private TextMeshProUGUI goldText;
-    [SerializeField] private float Time = 1.0f;
-
     [Header("Крестьяне")]
     [SerializeField] private TextMeshProUGUI civiliansText;
     [SerializeField] private Button buyCivillianBtn;

@@ -1,38 +1,46 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+
+public class FarmCoin : MonoBehaviour
 {
-    [Serialaizefield] private image targetImage;
-    [Serialaizefield] private int totalClick = 5;
-    [Serialaizefield] private int
+    [SerializeField] private Info info;
+    [SerializeField] private Image targetImage;
+    [SerializeField] private int totalClick = 5;
+    private Button click_btn;
     private float click;
 
     private void Start()
     {
-        if (targetImage != null) 
+        click_btn = GetComponent<Button>();
+        click_btn.onClick.AddListener(FillAndReward);
+        
+        if (targetImage != null)
         {
             targetImage.fillAmount = 0f;
         }
-
-        step = 1f / totalClicksRequired;
     }
 
+    private void OnDestroy()
+    {
+        click_btn.onClick.RemoveAllListeners();
+    }
     public void FillAndReward()
     {
-        if (fillImage == null) return;
+        Debug.Log("Заполнение начинается");
+        if (targetImage == null) return;
 
-        fillImage.fillAmount += step;
+        targetImage.fillAmount += 1f / totalClick;
 
-        if (fillImage.fillAmount >= 1f)
+        if (targetImage.fillAmount >= 1f)
         {
-            OnFullFill();
+            FullFill();
+            info.AddAllGold(10);
         }
-
-
     }
+    
     public void FullFill()
     {
-        fillImage.fillAmount = 0f;
+        targetImage.fillAmount = 0f;
     }
+}

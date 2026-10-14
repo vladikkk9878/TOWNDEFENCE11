@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
             mainPanel.SetActive(true);
         }
 
-        Debug.Log("Игра успешно началась!");
+        Debug.Log("Игра началась!");
     }
 
     public void TriggerGameOver()
