@@ -6,27 +6,17 @@ public class GameManager : MonoBehaviour
     [Header("Панели состояний")]
     [SerializeField] private GameObject startPanel;
     [SerializeField] private GameObject mainPanel;
-    [SerializeField] private GameObject losePanel; 
+    [SerializeField] private GameObject losePanel;
+    [SerializeField] private GameObject winPanel;
 
     private void Start()
     {
-
         Time.timeScale = 1f;
 
-        if (losePanel != null)
-        {
-            losePanel.SetActive(false);
-        }
-
-        if (startPanel != null)
-        {
-            startPanel.SetActive(true);
-        }
-
-        if (mainPanel != null)
-        {
-            mainPanel.SetActive(false);
-        }
+        if (losePanel != null) losePanel.SetActive(false);
+        if (winPanel != null) winPanel.SetActive(false);
+        if (startPanel != null) startPanel.SetActive(true);
+        if (mainPanel != null) mainPanel.SetActive(false);
     }
 
     public void StartGame()
@@ -41,12 +31,19 @@ public class GameManager : MonoBehaviour
             mainPanel.SetActive(true);
         }
 
-        Debug.Log("Игра началась!");
+    }
+
+    public void TriggerGameWin()
+    {
+
+        if (mainPanel != null) mainPanel.SetActive(false);
+        if (winPanel != null) winPanel.SetActive(true);
+
+        Time.timeScale = 0f;
     }
 
     public void TriggerGameOver()
     {
-        Debug.LogError("Менеджер зафиксировал поражение!");
 
         if (mainPanel != null)
         {

@@ -1,20 +1,26 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class FarmCoin : MonoBehaviour
 {
-    [SerializeField] private Info info;
+    [Header("Ссылки на базы данных")]
+    [SerializeField] private GameData gameData;
+
+    [Header("Настройки заполнения")]
     [SerializeField] private Image targetImage;
-    [SerializeField] private int totalClick = 5;
+    [SerializeField] private int totalClick = 6;
+    [SerializeField] private int rewardGold = 5;  
+
     private Button click_btn;
-    private float click;
 
     private void Start()
     {
         click_btn = GetComponent<Button>();
-        click_btn.onClick.AddListener(FillAndReward);
-        
+
+        if (click_btn != null)
+        {
+            click_btn.onClick.AddListener(FillAndReward);
+        }
         if (targetImage != null)
         {
             targetImage.fillAmount = 0f;
@@ -23,22 +29,36 @@ public class FarmCoin : MonoBehaviour
 
     private void OnDestroy()
     {
-        click_btn.onClick.RemoveAllListeners();
+        if (click_btn != null)
+        {
+            click_btn.onClick.RemoveAllListeners();
+        }
     }
+
     public void FillAndReward()
     {
-        Debug.Log("Заполнение начинается");
         if (targetImage == null) return;
-
         targetImage.fillAmount += 1f / totalClick;
+        Debug.Log($"Алмаз заполнен на: {targetImage.fillAmount * 100}%");
 
         if (targetImage.fillAmount >= 1f)
         {
             FullFill();
-            info.AddAllGold(10);
+            if (gameData != null)
+            {
+                gameData.allGold += rewardGold;
+                if (gameData.uiManager != null)
+                {
+                    gameData.uiManager.UpdateAllUI();
+                }
+            }
+            else
+            {
+                Debug.LogError("Забыли перетащить объект GameData в скрипт FarmCoin!");
+            }
         }
     }
-    
+
     public void FullFill()
     {
         targetImage.fillAmount = 0f;
